@@ -16,6 +16,10 @@ class Search extends \hightman\xunsearch\ActiveRecord
 {
     public static function search($keyword)
     {
-        return self::find()->where($keyword)->andWhere(['status' => [1, 2]])->asArray()->all();
+        return self::find()->where($keyword)->andWhere(['status' => [1, 2]])
+                ->asArray()
+                ->offset(0)
+                ->limit(1000)  // 最大搜索出来1000行数据
+                ->all();
     }
 }
